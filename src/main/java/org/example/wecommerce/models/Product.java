@@ -16,26 +16,26 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
-    private String productName;
+    @Column(nullable = false, name = "name")
+    private String name;
 
-    @Column(nullable = false)
-    private String productDescription;
+    @Column(nullable = false, name = "description")
+    private String description;
 
-    @Column(nullable = false)
-    private double productPrice;
+    @Column(nullable = false, name = "price")
+    private double price;
 
-    @Column(nullable = false)
-    private int stock;
+    @Column(nullable = false, name = "image_url")
+    private String imageUrl;
 
-    @Column(nullable = false)
-    private String productImageUrl;
+    @Column(nullable = false, name = "rating")
+    private int rating;
 
-    public Product(String productName, String productDescription, double productPrice, int stock, String productImageUrl) {
-        this.productName = productName;
-        this.productDescription = productDescription;
-        this.productPrice = productPrice;
-        this.stock = stock;
-        this.productImageUrl = productImageUrl;
+    public Product(String name, String description, double price, String imageUrl, int rating) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.rating = rating;
     }
 }

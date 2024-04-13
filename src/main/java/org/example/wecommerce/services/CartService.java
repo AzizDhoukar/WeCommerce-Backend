@@ -16,13 +16,11 @@ import java.util.Optional;
 public class CartService {
 
 
-    private final CartService cartService;
     private final CartRepository cartRepository;
     private final ProductRepository productRepository;
     private final CartProductRepository cartProductRepository;
 
-    public CartService(CartService cartService, CartRepository cartRepository, ProductRepository productRepository, CartProductRepository cartProductRepository) {
-        this.cartService = cartService;
+    public CartService(CartRepository cartRepository, ProductRepository productRepository, CartProductRepository cartProductRepository) {
         this.cartRepository = cartRepository;
         this.productRepository = productRepository;
         this.cartProductRepository = cartProductRepository;
@@ -52,13 +50,12 @@ public class CartService {
 
     public CartProduct addToCart(int productId, int cartId, Integer quantity) {
         Product product = productRepository.findById(productId).orElseThrow(() -> new NotFoundException("product couldn't be found by following id: " + productId));
-        Cart cart = cartService.getById(cartId);
+        Cart cart = getById(cartId);
 
         CartProduct newCartProduct = new CartProduct(product, cart, quantity);
         cartProductRepository.save(newCartProduct);
 
         cart.setCartTotal(cart.getCartTotal() + quantity);
-        product.setStock(product.getStock() - quantity);
 
         return newCartProduct;
     }
