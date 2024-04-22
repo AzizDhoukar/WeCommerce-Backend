@@ -60,7 +60,4 @@ public class ProductService {
     public void updateProduct(int productId, Product product) {
         productRepository.save(product);
     }
-
-    
-
 }

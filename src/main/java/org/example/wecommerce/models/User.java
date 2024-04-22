@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.util.Date;
 
 @Data
@@ -16,7 +18,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false)
     private String userName;
@@ -26,16 +28,13 @@ public class User {
 
     private String eMail;
 
+    @CreationTimestamp
     @Column(nullable = false)
     private Date userCreateDate;
 
-    @OneToOne
-    private Cart cart;
-
-    public User(String userName, String password, String eMail, Date userCreateDate) {
+    public User(String userName, String password, String eMail) {
         this.userName = userName;
         this.password = password;
         this.eMail = eMail;
-        this.userCreateDate = userCreateDate;
     }
 }
